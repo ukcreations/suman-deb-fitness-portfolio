@@ -42,12 +42,13 @@ function Counter({ targetValue, suffix = '' }) {
     return () => observer.disconnect();
   }, [numericTarget, hasAnimated]);
 
-  const formattedCount = count.toLocaleString();
+  const isYear = !targetValue.includes('+') && !targetValue.includes(',');
+  const formattedCount = isYear ? count.toString() : count.toLocaleString();
 
   return (
     <span ref={elementRef} className="font-bebas tracking-tight text-[#FF6B27]">
-      {hasAnimated ? formattedCount : targetValue.replace(/[^0-9]/g, '')}
-      {targetValue.includes('+') ? '+' : ''}
+      {hasAnimated ? formattedCount : targetValue}
+      {hasAnimated && targetValue.includes('+') ? '+' : ''}
     </span>
   );
 }
