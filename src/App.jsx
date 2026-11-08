@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SocialProof from './components/SocialProof';
 import Services from './components/Services';
+import TrainerGallery from './components/TrainerGallery';
 import About from './components/About';
 import Achievements from './components/Achievements';
 import ClientResults from './components/ClientResults';
@@ -31,6 +32,9 @@ export default function App() {
 
         {/* 3. Services ("What I Offer" / "Let's Get You Your Dream Body!") */}
         <Services />
+
+        {/* 3.5 Suman Deb In Action - Slanted Photo Ribbon Banner */}
+        <TrainerGallery />
 
         {/* 4. About Suman Deb */}
         <About />

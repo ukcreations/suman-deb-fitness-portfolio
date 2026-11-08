@@ -174,42 +174,90 @@ export const certificationsData = [
 export const transformationGallery = [
   {
     id: "trans-1",
-    title: "16-Week Body Recomposition",
-    category: "Fat Loss & Muscle Toning",
+    title: "Lean Muscle Hypertrophy & Aesthetic Conditioning",
+    category: "Physique Sculpting & Muscle Building",
     duration: "16 Weeks",
-    metrics: "-14 kg Fat Loss • +3.5 kg Lean Mass",
-    description: "Comprehensive lifestyle redesign involving high-protein structured dieting, 4-day resistance split, and metabolic conditioning.",
-    quote: "Suman bhaiya completely transformed my mindset around lifting heavy weights and consistency.",
-    clientName: "Rahul M. (IT Professional, Salt Lake)",
-    beforeImg: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=700&q=80",
-    afterImg: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=700&q=80",
-    sliderInitial: 50
+    metrics: "+7 kg Lean Muscle Mass • 9% Body Fat • Chiseled 6-Pack",
+    description: "Precision hypertrophy split focused on progressive overload across compound lifts, strict biomechanical form correction, high-protein macronutrient periodization, and peak aesthetic definition.",
+    quote: "From struggling to gain muscle to building a chiseled aesthetic physique with clear 6-pack definition. Suman bhaiya's biomechanics coaching and diet discipline made all the difference.",
+    clientName: "Verified Client (Kolkata)",
+    beforeImg: "/images/client-transformation-2-before.jpg",
+    afterImg: "/images/client-transformation-2-after.jpg",
+    badge: "Physique Transformation",
+    highlights: ["Hypertrophy Programming", "Strict Biomechanics", "Shredded Definition"]
   },
   {
     id: "trans-2",
-    title: "24-Week Hypertrophy Transformation",
-    category: "Strength & Lean Bulk",
-    duration: "24 Weeks",
-    metrics: "+8 kg Pure Muscle • Bench 60kg to 105kg",
-    description: "Focus on compound movements (Squats, Deadlifts, Overhead Press) and progressive caloric surplus programming.",
-    quote: "From being underweight and fatigued to hitting PRs every week. Suman's form correction was game-changing.",
-    clientName: "Aniket S. (Kestopur, Kolkata)",
-    beforeImg: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=700&q=80",
-    afterImg: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=700&q=80",
-    sliderInitial: 50
+    title: "Female Fat Loss & Body Toning",
+    category: "Women's Wellness & Body Sculpting",
+    duration: "16 Weeks",
+    metrics: "-11 kg Fat Loss • -4.5\" Waist Reduction • Peak Stamina",
+    description: "Customized female wellness protocol balancing steady progressive caloric deficit, core and lower-body sculpting, and balanced sustainable home meals without harsh restrictions.",
+    quote: "Suman bhaiya's guidance made all the difference. I lost 11 kg, my clothes fit so much better, and my daily energy is through the roof. The most sustainable fitness journey I've ever had!",
+    clientName: "Verified Female Client (Kolkata)",
+    beforeImg: "/images/client-transformation-3-before.jpg",
+    afterImg: "/images/client-transformation-3-after.jpg",
+    badge: "Toning & Wellness",
+    highlights: ["Core & Waist Sculpting", "Sustainable Meal Habits", "Full-Body Strength"]
   },
   {
     id: "trans-3",
-    title: "Postural Correction & Core Strength",
-    category: "Mobility & Conditioning",
-    duration: "12 Weeks",
-    metrics: "Zero Back Pain • 5km Run In 24 Mins",
-    description: "Targeted hip mobility, thoracic spine mobilization, and glute activation drills combined with functional stamina work.",
-    quote: "My chronic desk-job lumbar pain vanished within 6 weeks. Forever grateful for Suman's patient guidance.",
-    clientName: "Pooja D. (Manikanta, Kolkata)",
-    beforeImg: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80",
-    afterImg: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=700&q=80",
-    sliderInitial: 50
+    title: "Complete Fat Loss & Lifestyle Rebuild",
+    category: "Extreme Weight Loss & Health Reversal",
+    duration: "20 Weeks",
+    metrics: "-24 kg Body Fat • Waist 42\" → 32\" • Rebuilt Stamina",
+    description: "Comprehensive metabolic reconditioning combining a customized sustainable caloric deficit with Bengali/Indian meal flexibility, progressive resistance training, and high daily non-exercise physical activity.",
+    quote: "Suman bhaiya didn't just give me workout routines; he rebuilt my daily habits. Dropping over 20 kg without crash diets or exhaustion gave me my confidence and health back.",
+    clientName: "Verified Client (Kolkata)",
+    beforeImg: "/images/client-transformation-1-before.jpg",
+    afterImg: "/images/client-transformation-1-after.jpg",
+    badge: "Fat Loss Champion",
+    highlights: ["Sustainable Calorie Deficit", "Metabolic Conditioning", "Zero Joint Pain"]
+  }
+];
+
+export const sumanPhotoGallery = [
+  {
+    id: "photo-1",
+    src: "/images/suman-gallery/suman-action-1.jpg",
+    title: "Gym Floor Coaching",
+    caption: "Biomechanics & Precision Form",
+    badge: "1-on-1 Mentorship"
+  },
+  {
+    id: "photo-2",
+    src: "/images/suman-gallery/suman-action-2.jpg",
+    title: "Strength & Power Training",
+    caption: "Heavy Compound Lifting",
+    badge: "Strength Focus"
+  },
+  {
+    id: "photo-3",
+    src: "/images/suman-gallery/suman-action-3.jpg",
+    title: "Dedication & Discipline",
+    caption: "Daily Athlete Lifestyle",
+    badge: "Consistency"
+  },
+  {
+    id: "photo-4",
+    src: "/images/suman-gallery/suman-action-4.jpg",
+    title: "Form Correction & Guidance",
+    caption: "Safe & Progressive Overload",
+    badge: "K11 Certified"
+  },
+  {
+    id: "photo-5",
+    src: "/images/suman-gallery/suman-action-5.jpg",
+    title: "Aesthetic Physique & Posing",
+    caption: "Conditioning & Muscle Definition",
+    badge: "Pro Physique"
+  },
+  {
+    id: "photo-6",
+    src: "/images/suman-portrait.jpg",
+    title: "Head Coach Suman Deb",
+    caption: "Certified Personal Trainer Kolkata",
+    badge: "Head Coach"
   }
 ];
 
