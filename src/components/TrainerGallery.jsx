@@ -119,50 +119,52 @@ export default function TrainerGallery() {
           <div
             ref={scrollContainerRef}
             onScroll={checkScrollability}
-            className="flex items-center gap-3 sm:gap-4 overflow-x-auto scrollbar-none py-6 px-4 -mx-4 sm:mx-0 snap-x snap-mandatory scroll-smooth"
+            className="flex items-start gap-4 sm:gap-6 overflow-x-auto scrollbar-none py-6 px-4 -mx-4 sm:mx-0 snap-x snap-mandatory scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {sumanPhotoGallery.map((photo, index) => (
+            {sumanPhotoGallery.map((photo) => (
               <div
                 key={photo.id}
                 onClick={() => setSelectedPhoto(photo)}
-                className="shrink-0 snap-start"
+                className="shrink-0 snap-start flex flex-col items-center cursor-pointer group w-[200px] sm:w-[225px] md:w-[245px]"
               >
                 {/* Slanted Card Frame (Matching the sample skew) */}
-                <div className="relative w-[185px] sm:w-[210px] md:w-[230px] h-[280px] sm:h-[320px] md:h-[340px] rounded-2xl overflow-hidden border-2 border-white/25 hover:border-[#FF6B27] shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_0_30px_rgba(255,107,39,0.5)] transition-all duration-500 transform -skew-x-12 hover:-translate-y-2 hover:scale-[1.03] cursor-pointer group bg-[#0A0A0A]">
+                <div className="relative w-full h-[290px] sm:h-[330px] md:h-[350px] rounded-2xl overflow-hidden border-2 border-white/20 group-hover:border-[#FF6B27] shadow-[0_15px_35px_rgba(0,0,0,0.7)] group-hover:shadow-[0_0_30px_rgba(255,107,39,0.5)] transition-all duration-500 transform -skew-x-12 group-hover:-translate-y-2 group-hover:scale-[1.02] bg-[#0A0A0A]">
                   
                   {/* Counter-skewed inner wrapper to keep the photo upright and distortion-free */}
                   <div className="w-full h-full transform skew-x-12 scale-[1.28] relative overflow-hidden">
                     <img
                       src={photo.src}
                       alt={photo.title}
-                      className="w-full h-full object-cover object-center filter contrast-[1.05] brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-all duration-700"
+                      className="w-full h-full object-cover object-center filter contrast-[1.05] brightness-95 group-hover:brightness-105 transition-all duration-700"
                     />
 
-                    {/* Gradient Dark Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+                    {/* Subtle aesthetic gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
 
-                    {/* Zoom Icon indicator */}
-                    <div className="absolute top-3 right-3 w-7 h-7 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <ZoomIn className="w-3.5 h-3.5 text-[#FF6B27]" />
+                    {/* Zoom Icon indicator on hover */}
+                    <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                      <ZoomIn className="w-4 h-4 text-[#FF6B27]" />
                     </div>
-
-                    {/* Bottom Caption Pill */}
-                    <div className="absolute bottom-3 left-3 right-3 text-left">
-                      <span className="inline-block text-[9px] font-mono text-[#FF6B27] uppercase tracking-wider font-bold mb-0.5 px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-[#FF6B27]/30">
-                        {photo.badge}
-                      </span>
-                      <h4 className="font-bebas text-lg text-white uppercase tracking-wide leading-tight mt-1 drop-shadow">
-                        {photo.title}
-                      </h4>
-                      <p className="text-[10px] text-neutral-300 font-sans line-clamp-1 drop-shadow">
-                        {photo.caption}
-                      </p>
-                    </div>
-
                   </div>
 
                 </div>
+
+                {/* Highly Visible, Crystal-Clear Captions Correctly Offset to Match Slanted Card Bottom Center */}
+                <div className="mt-4 text-center px-1 w-full -translate-x-7 sm:-translate-x-8 md:-translate-x-8 transition-transform duration-300">
+                  <span className="inline-block px-2.5 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase text-[#FF6B27] bg-[#FF6B27]/10 border border-[#FF6B27]/30 mb-1.5 transition-all duration-300 group-hover:bg-[#FF6B27] group-hover:text-white group-hover:shadow-[0_0_15px_rgba(255,107,39,0.4)]">
+                    {photo.badge}
+                  </span>
+                  
+                  <h4 className="font-bebas text-lg sm:text-xl text-white uppercase tracking-wide group-hover:text-[#FF6B27] transition-colors leading-tight line-clamp-1">
+                    {photo.title}
+                  </h4>
+                  
+                  <p className="text-xs text-[#A5A5A5] line-clamp-1 mt-0.5 font-normal">
+                    {photo.caption}
+                  </p>
+                </div>
+
               </div>
             ))}
           </div>

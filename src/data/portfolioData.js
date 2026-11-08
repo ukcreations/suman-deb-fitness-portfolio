@@ -248,7 +248,7 @@ export const sumanPhotoGallery = [
   {
     id: "photo-5",
     src: "/images/suman-gallery/suman-action-5.jpg",
-    title: "Aesthetic Physique & Posing",
+    title: "Aesthetic Physique",
     caption: "Conditioning & Muscle Definition",
     badge: "Pro Physique"
   },
