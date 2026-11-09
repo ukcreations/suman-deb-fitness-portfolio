@@ -184,6 +184,7 @@ export const transformationGallery = [
     beforeImg: "/images/client-transformation-2-before.jpg",
     afterImg: "/images/client-transformation-2-after.jpg",
     badge: "Physique Transformation",
+    preferredFit: "cover",
     highlights: ["Hypertrophy Programming", "Strict Biomechanics", "Shredded Definition"]
   },
   {
@@ -198,6 +199,7 @@ export const transformationGallery = [
     beforeImg: "/images/client-transformation-3-before.jpg",
     afterImg: "/images/client-transformation-3-after.jpg",
     badge: "Toning & Wellness",
+    preferredFit: "cover",
     highlights: ["Core & Waist Sculpting", "Sustainable Meal Habits", "Full-Body Strength"]
   },
   {
@@ -212,7 +214,38 @@ export const transformationGallery = [
     beforeImg: "/images/client-transformation-1-before.jpg",
     afterImg: "/images/client-transformation-1-after.jpg",
     badge: "Fat Loss Champion",
+    preferredFit: "cover",
     highlights: ["Sustainable Calorie Deficit", "Metabolic Conditioning", "Zero Joint Pain"]
+  },
+  {
+    id: "trans-4",
+    title: "Metabolic Fat Loss & Body Recomposition",
+    category: "Fat Loss & Conditioning",
+    duration: "14 Weeks",
+    metrics: "-14 kg Weight Loss • Defined Midsection • Rebuilt Stamina",
+    description: "Structured progressive deficit combined with functional hypertrophy and core training. Reduced visceral belly fat, corrected posture, and restored peak everyday energy through sustainable dietary adjustments.",
+    quote: "Suman bhaiya's structured plan and constant motivation completely changed my physique and mindset. I lost the extra belly fat sustainably without extreme diets or feeling drained.",
+    clientName: "Verified Client (Kolkata)",
+    beforeImg: "/images/client-transformation-4-before.jpg",
+    afterImg: "/images/client-transformation-4-after.jpg",
+    badge: "Lifestyle Recomposition",
+    preferredFit: "contain",
+    highlights: ["Metabolic Deficit Plan", "Core & Posture Rebuild", "Sustainable Nutrition"]
+  },
+  {
+    id: "trans-5",
+    title: "60 KG → 54 KG Fat Loss & Waist Toning",
+    category: "Women's Wellness & Toning",
+    duration: "12 Weeks",
+    metrics: "60 kg → 54 kg (-6 kg Fat Loss) • Waist Toned • Athletic Stamina",
+    description: "Specialized female fat loss program focusing on steady caloric deficit, waist toning, and core strength without extreme food deprivation. Dropped 6 kg while boosting everyday metabolic energy.",
+    quote: "Dropping from 60 kg to 54 kg made me feel lighter, healthier, and so much more confident. Suman bhaiya made every workout enjoyable, approachable, and super effective!",
+    clientName: "Verified Female Client (Kolkata)",
+    beforeImg: "/images/client-transformation-5-before.jpg",
+    afterImg: "/images/client-transformation-5-after.jpg",
+    badge: "60 kg → 54 kg Target Achieved",
+    preferredFit: "contain",
+    highlights: ["Targeted Core & Waist Toning", "Custom Calorie Management", "Strength & Posture Correction"]
   }
 ];
 

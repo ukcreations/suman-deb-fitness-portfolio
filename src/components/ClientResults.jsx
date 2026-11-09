@@ -19,11 +19,28 @@ export default function ClientResults() {
   const [activeStoryIdx, setActiveStoryIdx] = useState(0);
   const [sliderPos, setSliderPos] = useState(50); // percentage 0 to 100
   const [viewMode, setViewMode] = useState('slider'); // 'slider' | 'split'
+  const [fitMode, setFitMode] = useState('auto'); // 'auto' | 'contain' | 'cover'
   const [containerWidth, setContainerWidth] = useState(0);
   const isDragging = useRef(false);
   const containerRef = useRef(null);
 
   const currentItem = transformationGallery[activeStoryIdx] || transformationGallery[0];
+  const effectiveFit = fitMode === 'auto'
+    ? (currentItem.preferredFit || (activeStoryIdx >= 3 ? 'contain' : 'cover'))
+    : fitMode;
+
+  const getStoryIcon = (idx) => {
+    switch (idx % 5) {
+      case 0: return Dumbbell;
+      case 1: return Sparkles;
+      case 2: return Flame;
+      case 3: return TrendingUp;
+      case 4: return Sparkles;
+      default: return Dumbbell;
+    }
+  };
+
+  const ActiveIcon = getStoryIcon(activeStoryIdx);
 
   // Keep inner image width strictly synchronized with outer container to prevent squishing
   useEffect(() => {
@@ -129,6 +146,19 @@ export default function ClientResults() {
               </button>
             </div>
 
+            {/* Framing Mode Toggle */}
+            <div className="inline-flex items-center p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
+              <button
+                type="button"
+                onClick={() => setFitMode(effectiveFit === 'contain' ? 'cover' : 'contain')}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase text-[#A5A5A5] hover:text-white transition-all duration-300"
+                title="Toggle framing between uncropped full image and filled frame"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-[#FF6B27]" />
+                <span>{effectiveFit === 'contain' ? 'View: Full Uncropped' : 'View: Fill Frame'}</span>
+              </button>
+            </div>
+
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>100% Genuine Client Results</span>
@@ -140,7 +170,7 @@ export default function ClientResults() {
         <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-10">
           {transformationGallery.map((item, index) => {
             const isActive = activeStoryIdx === index;
-            const IconComponent = index === 0 ? Dumbbell : (index === 1 ? Sparkles : Flame);
+            const IconComponent = getStoryIcon(index);
 
             return (
               <button
@@ -192,11 +222,25 @@ export default function ClientResults() {
                 onTouchEnd={handleEnd}
                 onTouchMove={handleTouchMove}
               >
+                {/* Ambient Blurred Background for contain mode */}
+                {effectiveFit === 'contain' && (
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+                    <img
+                      src={currentItem.afterImg}
+                      alt=""
+                      aria-hidden="true"
+                      className="w-full h-full object-cover blur-2xl opacity-35 scale-110 filter brightness-75"
+                    />
+                  </div>
+                )}
+
                 {/* "AFTER" Image (Full background layer) */}
                 <img
                   src={currentItem.afterImg}
                   alt={`${currentItem.title} - After`}
-                  className="absolute inset-0 w-full h-full object-cover object-top pointer-events-none filter brightness-100"
+                  className={`absolute inset-0 w-full h-full ${
+                    effectiveFit === 'contain' ? 'object-contain relative z-10' : 'object-cover object-top'
+                  } pointer-events-none filter brightness-100`}
                 />
 
                 {/* Top-Right After Badge */}
@@ -210,17 +254,33 @@ export default function ClientResults() {
                   className="absolute inset-y-0 left-0 overflow-hidden pointer-events-none transition-none z-10"
                   style={{ width: `${sliderPos}%` }}
                 >
+                  {effectiveFit === 'contain' && (
+                    <div
+                      className="absolute inset-0 pointer-events-none overflow-hidden select-none"
+                      style={{ width: containerWidth > 0 ? `${containerWidth}px` : '100%' }}
+                    >
+                      <img
+                        src={currentItem.beforeImg}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-full h-full object-cover blur-2xl opacity-35 scale-110 filter brightness-75"
+                      />
+                    </div>
+                  )}
+
                   <img
                     src={currentItem.beforeImg}
                     alt={`${currentItem.title} - Before`}
-                    className="absolute inset-0 max-w-none h-full object-cover object-top filter brightness-95"
+                    className={`absolute inset-0 max-w-none h-full ${
+                      effectiveFit === 'contain' ? 'object-contain relative z-10' : 'object-cover object-top'
+                    } filter brightness-95`}
                     style={{
                       width: containerWidth > 0 ? `${containerWidth}px` : '100%',
                     }}
                   />
 
                   {/* Top-Left Before Badge */}
-                  <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/30 text-white text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider shadow-lg flex items-center gap-1.5 whitespace-nowrap">
+                  <div className="absolute top-3 left-3 z-20 bg-black/85 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/30 text-white text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider shadow-lg flex items-center gap-1.5 whitespace-nowrap">
                     <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#FF6B27]" />
                     <span>BEFORE<span className="hidden sm:inline"> • DAY 1</span></span>
                   </div>
@@ -247,16 +307,28 @@ export default function ClientResults() {
               <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full">
                 {/* BEFORE CARD */}
                 <div className="relative aspect-[4/5] sm:aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 bg-black/60 shadow-lg group">
+                  {effectiveFit === 'contain' && (
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                      <img
+                        src={currentItem.beforeImg}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-full h-full object-cover blur-2xl opacity-35 scale-110 filter brightness-75"
+                      />
+                    </div>
+                  )}
                   <img
                     src={currentItem.beforeImg}
                     alt={`${currentItem.title} - Before`}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    className={`w-full h-full ${
+                      effectiveFit === 'contain' ? 'object-contain relative z-10' : 'object-cover object-top'
+                    } transition-transform duration-500 group-hover:scale-105`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-3 py-1 rounded-full border border-white/30 text-white text-[11px] font-mono font-bold uppercase tracking-wider">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10" />
+                  <div className="absolute top-3 left-3 bg-black/85 backdrop-blur-md px-3 py-1 rounded-full border border-white/30 text-white text-[11px] font-mono font-bold uppercase tracking-wider z-20">
                     BEFORE • DAY 1
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 text-left">
+                  <div className="absolute bottom-3 left-3 right-3 text-left z-20">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 block">Baseline Starting Point</span>
                     <span className="text-xs font-bold text-white">Initial Physical State</span>
                   </div>
@@ -264,16 +336,28 @@ export default function ClientResults() {
 
                 {/* AFTER CARD */}
                 <div className="relative aspect-[4/5] sm:aspect-[4/5] rounded-2xl overflow-hidden border border-[#FF6B27]/40 bg-black/60 shadow-[0_0_25px_rgba(255,107,39,0.2)] group">
+                  {effectiveFit === 'contain' && (
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                      <img
+                        src={currentItem.afterImg}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-full h-full object-cover blur-2xl opacity-35 scale-110 filter brightness-75"
+                      />
+                    </div>
+                  )}
                   <img
                     src={currentItem.afterImg}
                     alt={`${currentItem.title} - After`}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    className={`w-full h-full ${
+                      effectiveFit === 'contain' ? 'object-contain relative z-10' : 'object-cover object-top'
+                    } transition-transform duration-500 group-hover:scale-105`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute top-3 right-3 bg-emerald-500/90 text-white backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider shadow">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10" />
+                  <div className="absolute top-3 right-3 bg-emerald-500/90 text-white backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider shadow z-20">
                     AFTER • RESULT
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 text-left">
+                  <div className="absolute bottom-3 left-3 right-3 text-left z-20">
                     <span className="text-[10px] font-mono uppercase tracking-wider text-[#FF6B27] block font-bold">Goal Achieved</span>
                     <span className="text-xs font-bold text-emerald-400">{currentItem.metrics.split('•')[0]}</span>
                   </div>
@@ -287,13 +371,7 @@ export default function ClientResults() {
             
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF6B27]/15 border border-[#FF6B27]/30 text-[#FF6B27] text-xs font-mono font-bold tracking-wider uppercase">
-                {activeStoryIdx === 0 ? (
-                  <Dumbbell className="w-3 h-3" />
-                ) : activeStoryIdx === 1 ? (
-                  <Sparkles className="w-3 h-3" />
-                ) : (
-                  <Flame className="w-3 h-3" />
-                )}
+                <ActiveIcon className="w-3 h-3" />
                 <span>{currentItem.category}</span>
               </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-neutral-400">
@@ -408,24 +486,44 @@ export default function ClientResults() {
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   {/* Before thumbnail */}
                   <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                    {item.preferredFit === 'contain' && (
+                      <img
+                        src={item.beforeImg}
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute inset-0 w-full h-full object-cover blur-md opacity-35 scale-110 pointer-events-none filter brightness-75"
+                      />
+                    )}
                     <img
                       src={item.beforeImg}
                       alt={`${item.title} Before`}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      className={`w-full h-full ${
+                        item.preferredFit === 'contain' ? 'object-contain relative z-10' : 'object-cover object-top'
+                      } group-hover:scale-105 transition-transform duration-500`}
                     />
-                    <div className="absolute top-2 left-2 bg-black/80 px-2 py-0.5 rounded text-[9px] font-mono font-bold text-white uppercase">
+                    <div className="absolute top-2 left-2 bg-black/80 px-2 py-0.5 rounded text-[9px] font-mono font-bold text-white uppercase z-20">
                       Before
                     </div>
                   </div>
 
                   {/* After thumbnail */}
                   <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-black/40 border border-[#FF6B27]/30">
+                    {item.preferredFit === 'contain' && (
+                      <img
+                        src={item.afterImg}
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute inset-0 w-full h-full object-cover blur-md opacity-35 scale-110 pointer-events-none filter brightness-75"
+                      />
+                    )}
                     <img
                       src={item.afterImg}
                       alt={`${item.title} After`}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      className={`w-full h-full ${
+                        item.preferredFit === 'contain' ? 'object-contain relative z-10' : 'object-cover object-top'
+                      } group-hover:scale-105 transition-transform duration-500`}
                     />
-                    <div className="absolute top-2 right-2 bg-emerald-500 px-2 py-0.5 rounded text-[9px] font-mono font-bold text-white uppercase">
+                    <div className="absolute top-2 right-2 bg-emerald-500 px-2 py-0.5 rounded text-[9px] font-mono font-bold text-white uppercase z-20">
                       After
                     </div>
                   </div>
