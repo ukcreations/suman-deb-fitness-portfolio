@@ -1,17 +1,79 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2, ShieldCheck, MapPin, Award } from 'lucide-react';
-import { personalInfo } from '../data/portfolioData';
+import { personalInfo, sumanPhotoGallery } from '../data/portfolioData';
 
 export default function Hero() {
+  // Use the exact gym floor images, excluding the last image as requested
+  const backgroundCards = sumanPhotoGallery.slice(0, 4);
+
   return (
     <section className="relative min-h-[92vh] pt-32 pb-20 flex items-center overflow-hidden bg-[#050505]">
-      {/* Background Ambient Glows & Grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
-      
-      {/* Orange Ambient Glows */}
-      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#FF6B27]/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#FF6B27]/20 rounded-full blur-[130px] pointer-events-none" />
-      
+      {/* ============================================================ */}
+      {/* SEAMLESS SIDEWAYS LOOPING BACKGROUND: GYM FLOOR ACTION CARDS */}
+      {/* ============================================================ */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-center">
+        {/* Ambient warm orange atmospheric mesh */}
+        <div className="absolute top-1/4 left-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-[#FF6B27]/12 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-[#FF6B27]/10 rounded-full blur-[140px] pointer-events-none" />
+        
+        {/* Subtle grid pattern accent */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
+
+        {/* Marquee Track: Seamless Infinite Sideways Loop */}
+        <div className="animate-hero-marquee flex items-center gap-6 sm:gap-8 shrink-0 select-none opacity-50">
+          {/* Group 1 (Set of 8: 2 x 4 cards) */}
+          {[...backgroundCards, ...backgroundCards].map((photo, idx) => (
+            <div
+              key={`g1-${photo.id}-${idx}`}
+              className="shrink-0 w-[210px] sm:w-[250px] md:w-[285px] lg:w-[315px] h-[340px] sm:h-[400px] md:h-[450px] lg:h-[490px]"
+            >
+              <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 sm:border-2 sm:border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] transform -skew-x-12 bg-[#0A0A0A]">
+                <div className="w-full h-full transform skew-x-12 scale-[1.3] relative overflow-hidden">
+                  <img
+                    src={photo.src}
+                    alt={photo.title}
+                    className="w-full h-full object-cover object-center filter contrast-[1.08] brightness-95"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* Group 2 (Identical Set of 8 for mathematically seamless 100% loop) */}
+          {[...backgroundCards, ...backgroundCards].map((photo, idx) => (
+            <div
+              key={`g2-${photo.id}-${idx}`}
+              className="shrink-0 w-[210px] sm:w-[250px] md:w-[285px] lg:w-[315px] h-[340px] sm:h-[400px] md:h-[450px] lg:h-[490px]"
+            >
+              <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 sm:border-2 sm:border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] transform -skew-x-12 bg-[#0A0A0A]">
+                <div className="w-full h-full transform skew-x-12 scale-[1.3] relative overflow-hidden">
+                  <img
+                    src={photo.src}
+                    alt={photo.title}
+                    className="w-full h-full object-cover object-center filter contrast-[1.08] brightness-95"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Multi-Stop Cinematic Vignettes for Flawless Readability */}
+        {/* Left Column Text Protection Gradient */}
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[62%] bg-gradient-to-r from-[#050505] via-[#050505]/85 to-transparent pointer-events-none" />
+        
+        {/* Top and Bottom atmospheric blend */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#050505] via-[#050505]/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent pointer-events-none" />
+        
+        {/* Right edge subtle soft fade */}
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#050505]/70 to-transparent pointer-events-none" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
