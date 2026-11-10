@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ArrowRight, CheckCircle2, ShieldCheck, MapPin, Award } from 'lucide-react';
-import { personalInfo, sumanPhotoGallery } from '../data/portfolioData';
+import { personalInfo, heroMediaLoop } from '../data/portfolioData';
 
 export default function Hero() {
-  // Use the exact gym floor images, excluding the last image as requested
-  const backgroundCards = sumanPhotoGallery.slice(0, 4);
+  const marqueeContainerRef = useRef(null);
+
+  // Guarantee all background workout videos immediately autoplay silently on site load
+  useEffect(() => {
+    if (marqueeContainerRef.current) {
+      const vids = marqueeContainerRef.current.querySelectorAll('video');
+      vids.forEach((v) => {
+        v.muted = true;
+        v.defaultMuted = true;
+        v.volume = 0;
+        v.playsInline = true;
+        v.play().catch(() => {});
+      });
+    }
+  }, []);
 
   return (
     <section className="relative min-h-[92vh] pt-32 pb-20 flex items-center overflow-hidden bg-[#050505]">
       {/* ============================================================ */}
-      {/* SEAMLESS SIDEWAYS LOOPING BACKGROUND: GYM FLOOR ACTION CARDS */}
+      {/* SEAMLESS SIDEWAYS LOOPING BACKGROUND: GYM PHOTOS & VIDEOS     */}
       {/* ============================================================ */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-center">
         {/* Ambient warm orange atmospheric mesh */}
@@ -20,41 +33,80 @@ export default function Hero() {
         <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
 
         {/* Marquee Track: Seamless Infinite Sideways Loop */}
-        <div className="animate-hero-marquee flex items-center gap-6 sm:gap-8 shrink-0 select-none opacity-50">
-          {/* Group 1 (Set of 8: 2 x 4 cards) */}
-          {[...backgroundCards, ...backgroundCards].map((photo, idx) => (
+        <div
+          ref={marqueeContainerRef}
+          className="animate-hero-marquee flex items-center gap-6 sm:gap-8 shrink-0 select-none opacity-50"
+        >
+          {/* Group 1 (Curated 10 media items: interleaved videos & photos) */}
+          {heroMediaLoop.map((item, idx) => (
             <div
-              key={`g1-${photo.id}-${idx}`}
+              key={`g1-${item.id}-${idx}`}
               className="shrink-0 w-[210px] sm:w-[250px] md:w-[285px] lg:w-[315px] h-[340px] sm:h-[400px] md:h-[450px] lg:h-[490px]"
             >
               <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 sm:border-2 sm:border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] transform -skew-x-12 bg-[#0A0A0A]">
                 <div className="w-full h-full transform skew-x-12 scale-[1.3] relative overflow-hidden">
-                  <img
-                    src={photo.src}
-                    alt={photo.title}
-                    className="w-full h-full object-cover object-center filter contrast-[1.08] brightness-95"
-                    loading="eager"
-                  />
+                  {item.type === 'video' ? (
+                    <video
+                      src={item.videoSrc}
+                      poster={item.src}
+                      autoPlay
+                      loop
+                      muted
+                      defaultMuted
+                      playsInline
+                      preload="auto"
+                      onVolumeChange={(e) => {
+                        e.currentTarget.muted = true;
+                        e.currentTarget.volume = 0;
+                      }}
+                      className="w-full h-full object-cover object-center filter contrast-[1.08] brightness-95 pointer-events-none"
+                    />
+                  ) : (
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-full object-cover object-center filter contrast-[1.08] brightness-95"
+                      loading="eager"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
                 </div>
               </div>
             </div>
           ))}
 
-          {/* Group 2 (Identical Set of 8 for mathematically seamless 100% loop) */}
-          {[...backgroundCards, ...backgroundCards].map((photo, idx) => (
+          {/* Group 2 (Identical Set for mathematically seamless 100% loop) */}
+          {heroMediaLoop.map((item, idx) => (
             <div
-              key={`g2-${photo.id}-${idx}`}
+              key={`g2-${item.id}-${idx}`}
               className="shrink-0 w-[210px] sm:w-[250px] md:w-[285px] lg:w-[315px] h-[340px] sm:h-[400px] md:h-[450px] lg:h-[490px]"
             >
               <div className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 sm:border-2 sm:border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] transform -skew-x-12 bg-[#0A0A0A]">
                 <div className="w-full h-full transform skew-x-12 scale-[1.3] relative overflow-hidden">
-                  <img
-                    src={photo.src}
-                    alt={photo.title}
-                    className="w-full h-full object-cover object-center filter contrast-[1.08] brightness-95"
-                    loading="eager"
-                  />
+                  {item.type === 'video' ? (
+                    <video
+                      src={item.videoSrc}
+                      poster={item.src}
+                      autoPlay
+                      loop
+                      muted
+                      defaultMuted
+                      playsInline
+                      preload="auto"
+                      onVolumeChange={(e) => {
+                        e.currentTarget.muted = true;
+                        e.currentTarget.volume = 0;
+                      }}
+                      className="w-full h-full object-cover object-center filter contrast-[1.08] brightness-95 pointer-events-none"
+                    />
+                  ) : (
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-full object-cover object-center filter contrast-[1.08] brightness-95"
+                      loading="eager"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
                 </div>
               </div>

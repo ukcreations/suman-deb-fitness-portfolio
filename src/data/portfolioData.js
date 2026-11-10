@@ -246,53 +246,340 @@ export const transformationGallery = [
     badge: "60 kg → 54 kg Target Achieved",
     preferredFit: "contain",
     highlights: ["Targeted Core & Waist Toning", "Custom Calorie Management", "Strength & Posture Correction"]
+  },
+  {
+    id: "trans-6",
+    title: "Back Width & Upper Posterior Hypertrophy",
+    category: "Back Hypertrophy & Lat Sculpting",
+    duration: "14 Weeks",
+    metrics: "+4.5\" Lat Spread • V-Taper Definition • Posterior Core",
+    description: "Specialized back hypertrophy protocol prioritizing vertical and horizontal pulling biomechanics, scapular retraction control, progressive lat pulldowns, barbell rowing, and strict back mind-muscle connection.",
+    quote: "My back was completely flat before training with Suman bhaiya. With his biomechanical guidance on rowing angles and lat engagement, my back transformed into a solid V-taper.",
+    clientName: "Verified Client (Kolkata)",
+    beforeImg: "/images/client-transformation-6-before.jpg",
+    afterImg: "/images/client-transformation-6-after.jpg",
+    badge: "V-Taper Lat Spread",
+    preferredFit: "contain",
+    highlights: ["Lat Width & Depth", "Scapular Control", "Upper Posterior Chain"]
+  },
+  {
+    id: "trans-7",
+    title: "Torso Recomposition & Upper Body Density",
+    category: "Full-Body Recomposition & Muscle Building",
+    duration: "16 Weeks",
+    metrics: "-8 kg Fat Loss • +5 kg Lean Muscle • Torso Rebuild",
+    description: "Targeted body recomposition blueprint utilizing structured compound pressing, progressive progressive overload, and an optimized protein-dense diet that melted stubborn midsection fat while building dense chest and arm mass.",
+    quote: "I went from feeling sluggish and hiding behind loose t-shirts to having a strong, athletic chest and confident posture. Suman bhaiya's coaching changes the way you look and carry yourself.",
+    clientName: "Verified Client (Kolkata)",
+    beforeImg: "/images/client-transformation-7-before.jpg",
+    afterImg: "/images/client-transformation-7-after.jpg",
+    badge: "Torso Recomposition",
+    preferredFit: "contain",
+    highlights: ["Chest & Shoulder Density", "Core Tightening", "Posture & Stamina"]
+  },
+  {
+    id: "trans-8",
+    title: "Chest Hypertrophy & Arm Peak Sculpting (Front View)",
+    category: "Upper Body Hypertrophy & Conditioning",
+    duration: "12 Weeks",
+    metrics: "+3.5\" Chest Expansion • Peaked Biceps • Toned Midsection",
+    description: "Hypertrophy program focusing on clavicular and sternal pectoral recruitment, incline dumbbell presses, cable crossovers, and targeted bicep peak isolation under calibrated tension.",
+    quote: "Suman bhaiya corrected my pressing angles on day one. Within 12 weeks, my chest filled out, my arms gained solid shape, and my gym confidence reached a whole new level.",
+    clientName: "Verified Client (Kolkata)",
+    beforeImg: "/images/client-transformation-8-before.jpg",
+    afterImg: "/images/client-transformation-8-after.jpg",
+    badge: "Chest & Arm Sculpting",
+    preferredFit: "contain",
+    highlights: ["Pectoral Isolation", "Bicep Peak Hypertrophy", "Form & Tension Control"]
+  },
+  {
+    id: "trans-9",
+    title: "Posterior Chain & Lat Width Development (Back View)",
+    category: "Posterior Chain & Shoulder Health",
+    duration: "12 Weeks",
+    metrics: "V-Taper Wingspan • Rear Delt 3D Caps • Spinal Erectors",
+    description: "Posterior chain focus targeting rhomboids, lower traps, rear deltoids, and lats. Rebalanced muscle symmetry, eliminated rounded shoulder posture, and developed athletic back thickness.",
+    quote: "Seeing my back progress from both front and back angles showed me the real power of structured training. Suman bhaiya's eye for form is unmatched.",
+    clientName: "Verified Client (Kolkata)",
+    beforeImg: "/images/client-transformation-9-before.jpg",
+    afterImg: "/images/client-transformation-9-after.jpg",
+    badge: "3D Back Symmetry",
+    preferredFit: "contain",
+    highlights: ["Lat Flare & V-Taper", "Rear Delt Definition", "Postural Realignment"]
   }
 ];
 
 export const sumanPhotoGallery = [
+  // --- 1 PHOTO, 1 VIDEO ALTERNATING SEQUENCE ---
   {
     id: "photo-1",
+    type: "image",
     src: "/images/suman-gallery/suman-action-1.jpg",
     title: "Gym Floor Coaching",
     caption: "Biomechanics & Precision Form",
     badge: "1-on-1 Mentorship"
   },
   {
+    id: "video-1",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-1.jpg",
+    videoSrc: "/videos/suman-workout-cable-fly.mp4",
+    title: "Standing Cable Chest Flys",
+    caption: "Sternal Pec Fiber Isolation & Chest Stretch",
+    badge: "Chest Hypertrophy"
+  },
+  {
     id: "photo-2",
+    type: "image",
     src: "/images/suman-gallery/suman-action-2.jpg",
     title: "Strength & Power Training",
     caption: "Heavy Compound Lifting",
     badge: "Strength Focus"
   },
   {
+    id: "video-2",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-2.jpg",
+    videoSrc: "/videos/suman-workout-preacher-curl.mp4",
+    title: "Preacher Machine Bicep Curls",
+    caption: "Strict Brachialis & Bicep Peak Overload",
+    badge: "Arm Hypertrophy"
+  },
+  {
     id: "photo-3",
+    type: "image",
     src: "/images/suman-gallery/suman-action-3.jpg",
     title: "Dedication & Discipline",
     caption: "Daily Athlete Lifestyle",
     badge: "Consistency"
   },
   {
+    id: "video-3",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-3.jpg",
+    videoSrc: "/videos/suman-workout-tricep-conditioning.mp4",
+    title: "Tricep & Shoulder Striations",
+    caption: "Vascular Muscular Striations & Conditioning",
+    badge: "Upper Body Shred"
+  },
+  {
     id: "photo-4",
+    type: "image",
     src: "/images/suman-gallery/suman-action-4.jpg",
     title: "Form Correction & Guidance",
     caption: "Safe & Progressive Overload",
     badge: "K11 Certified"
   },
   {
+    id: "video-4",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-4.jpg",
+    videoSrc: "/videos/suman-workout-mirror-cables.mp4",
+    title: "Gym Floor Cable Flys",
+    caption: "Full Range Mechanical Tension Under Tension",
+    badge: "Live Gym Floor"
+  },
+  {
     id: "photo-5",
+    type: "image",
     src: "/images/suman-gallery/suman-action-5.jpg",
     title: "Aesthetic Physique",
     caption: "Conditioning & Muscle Definition",
     badge: "Pro Physique"
   },
   {
+    id: "video-5",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-5.jpg",
+    videoSrc: "/videos/suman-workout-rear-delts.mp4",
+    title: "Rear Delt & Lateral Flys",
+    caption: "Posterior Deltoid & Upper Back Width",
+    badge: "Shoulder Symmetry"
+  },
+
+  // --- ADDITIONAL GYM FLOOR PHOTOS ---
+  {
     id: "photo-6",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-6.jpg",
+    title: "Most Muscular Power Pose",
+    caption: "Chest, Traps & Arm Density",
+    badge: "Peak Intensity"
+  },
+  {
+    id: "photo-7",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-7.jpg",
+    title: "Preacher Bench Arms",
+    caption: "Delts & Bicep Vascularity",
+    badge: "Hypertrophy Focus"
+  },
+  {
+    id: "photo-8",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-8.jpg",
+    title: "Gym Floor Dedication",
+    caption: "Daily Athlete Discipline",
+    badge: "Gym Floor Coach"
+  },
+  {
+    id: "photo-9",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-9.jpg",
+    title: "Vascular Arm Conditioning",
+    caption: "Peak Time-Under-Tension",
+    badge: "Elite Conditioning"
+  },
+  {
+    id: "photo-10",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-10.jpg",
+    title: "Chiseled 6-Pack Abs & Tricep",
+    caption: "Sub-10% Body Fat Definition",
+    badge: "Aesthetic Shred"
+  },
+  {
+    id: "photo-11",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-11.jpg",
+    title: "Upper Back & Rear Delts",
+    caption: "V-Taper Muscular Symmetry",
+    badge: "Back Development"
+  },
+  {
+    id: "photo-12",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-12.jpg",
+    title: "Side Chest & Core Definition",
+    caption: "Sculpted Serratus & Obliques",
+    badge: "Natural Symmetry"
+  },
+  {
+    id: "photo-13",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-13.jpg",
+    title: "Heavy Incline Dumbbell Press",
+    caption: "Clavicular Pec Overload",
+    badge: "Chest Power"
+  },
+  {
+    id: "photo-14",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-14.jpg",
+    title: "Classic Front Pose",
+    caption: "Balanced Muscular Proportions",
+    badge: "Strength Balance"
+  },
+  {
+    id: "photo-15",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-15.jpg",
+    title: "Lat Spread & V-Taper Width",
+    caption: "Back Hypertrophy Precision",
+    badge: "V-Taper Width"
+  },
+  {
+    id: "photo-16",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-16.jpg",
+    title: "Athletic Conditioning Pose",
+    caption: "Full Core Striations",
+    badge: "Core Precision"
+  },
+  {
+    id: "photo-17",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-17.jpg",
+    title: "Competition Most Muscular",
+    caption: "Full Body Striations & Quads",
+    badge: "Maximum Overload"
+  },
+  {
+    id: "photo-18",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-18.jpg",
+    title: "Side Tricep & Obliques",
+    caption: "Chiaroscuro Gym Aesthetics",
+    badge: "Sculpted V-Taper"
+  },
+  {
+    id: "photo-19",
+    type: "image",
     src: "/images/suman-portrait.jpg",
     title: "Head Coach Suman Deb",
     caption: "Certified Personal Trainer Kolkata",
     badge: "Head Coach"
   }
 ];
+
+export const heroMediaLoop = [
+  {
+    id: "hero-vid-1",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-1.jpg",
+    videoSrc: "/videos/suman-workout-cable-fly.mp4",
+    title: "Cable Chest Flys"
+  },
+  {
+    id: "hero-photo-1",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-2.jpg",
+    title: "Side Chest & Biceps"
+  },
+  {
+    id: "hero-vid-2",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-2.jpg",
+    videoSrc: "/videos/suman-workout-preacher-curl.mp4",
+    title: "Preacher Machine Curls"
+  },
+  {
+    id: "hero-photo-2",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-10.jpg",
+    title: "Chiseled 6-Pack Abs"
+  },
+  {
+    id: "hero-vid-3",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-3.jpg",
+    videoSrc: "/videos/suman-workout-tricep-conditioning.mp4",
+    title: "Tricep & Shoulder Striations"
+  },
+  {
+    id: "hero-photo-3",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-1.jpg",
+    title: "Gym Floor Physique"
+  },
+  {
+    id: "hero-vid-4",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-5.jpg",
+    videoSrc: "/videos/suman-workout-rear-delts.mp4",
+    title: "Rear Delt Lateral Flys"
+  },
+  {
+    id: "hero-photo-4",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-18.jpg",
+    title: "Side Tricep Chiaroscuro"
+  },
+  {
+    id: "hero-vid-5",
+    type: "video",
+    src: "/images/suman-gallery/suman-video-thumb-4.jpg",
+    videoSrc: "/videos/suman-workout-mirror-cables.mp4",
+    title: "Gym Atmosphere Cable Flys"
+  },
+  {
+    id: "hero-photo-5",
+    type: "image",
+    src: "/images/suman-gallery/suman-action-6.jpg",
+    title: "Most Muscular Density"
+  }
+];
+
 
 export const clientReviews = [
   {
