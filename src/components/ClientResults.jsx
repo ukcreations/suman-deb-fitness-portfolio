@@ -41,6 +41,80 @@ export default function ClientResults() {
   };
 
   const ActiveIcon = getStoryIcon(activeStoryIdx);
+  const [highlightDirectLink, setHighlightDirectLink] = useState(false);
+
+  // Deep-linking support for resume, direct links, and social shares (?case=trans-1#results)
+  useEffect(() => {
+    let timers = [];
+    const handleUrlTarget = () => {
+      try {
+        const searchParams = new URLSearchParams(window.location.search);
+        const targetParam = searchParams.get('case') || searchParams.get('story') || searchParams.get('id');
+        const hash = window.location.hash || '';
+
+        let targetId = targetParam;
+        if (!targetId && hash) {
+          const match = hash.match(/trans-\d+/i);
+          if (match) targetId = match[0].toLowerCase();
+        }
+
+        if (targetId) {
+          const cleanTarget = String(targetId).toLowerCase().trim();
+          const foundIdx = transformationGallery.findIndex(
+            (item) =>
+              item.id.toLowerCase() === cleanTarget ||
+              item.id.toLowerCase() === `trans-${cleanTarget}` ||
+              item.id.replace('trans-', '') === cleanTarget
+          );
+          if (foundIdx !== -1) {
+            setActiveStoryIdx(foundIdx);
+            setSliderPos(50);
+            setHighlightDirectLink(true);
+
+            // Smooth multi-pass scroll directly to the showcase card (accounting for fixed navbar)
+            const doScroll = () => {
+              const showcaseEl = document.getElementById('results-showcase') || document.getElementById('results');
+              if (showcaseEl) {
+                const navbarHeight = 85;
+                const elementPosition = showcaseEl.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            };
+
+            doScroll();
+            timers.push(setTimeout(doScroll, 120));
+            timers.push(setTimeout(doScroll, 400));
+            timers.push(setTimeout(doScroll, 800));
+          }
+        } else if (hash.includes('results')) {
+          const doScroll = () => {
+            const el = document.getElementById('results');
+            if (el) {
+              const navbarHeight = 80;
+              const elementPosition = el.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
+          };
+          doScroll();
+          timers.push(setTimeout(doScroll, 150));
+        }
+      } catch (err) {
+        // Fallback gracefully
+      }
+    };
+
+    handleUrlTarget();
+    window.addEventListener('hashchange', handleUrlTarget);
+    return () => {
+      timers.forEach(clearTimeout);
+      window.removeEventListener('hashchange', handleUrlTarget);
+    };
+  }, []);
 
   // Keep inner image width strictly synchronized with outer container to prevent squishing
   useEffect(() => {
@@ -198,7 +272,14 @@ export default function ClientResults() {
         </div>
 
         {/* Main Interactive Comparison Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center bg-[#0E0E0E] rounded-3xl border border-white/15 p-5 sm:p-8 lg:p-10 shadow-2xl relative">
+        <div
+          id="results-showcase"
+          className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center bg-[#0E0E0E] rounded-3xl border transition-all duration-500 p-5 sm:p-8 lg:p-10 shadow-2xl relative ${
+            highlightDirectLink
+              ? 'border-[#FF6B27] shadow-[0_0_40px_rgba(255,107,39,0.35)] ring-2 ring-[#FF6B27]/50'
+              : 'border-white/15'
+          }`}
+        >
           
           {/* Subtle Top corner label */}
           <div className="absolute top-4 left-6 hidden sm:flex items-center gap-2 text-[10px] font-mono text-neutral-500 tracking-widest uppercase">
@@ -369,6 +450,13 @@ export default function ClientResults() {
           {/* RIGHT: Detailed Transformation Breakdown */}
           <div className="lg:col-span-5 flex flex-col justify-center">
             
+            {highlightDirectLink && (
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FF6B27]/20 border border-[#FF6B27] text-[#FF6B27] text-xs font-mono font-bold tracking-wider uppercase mb-3.5 animate-pulse shadow-[0_0_20px_rgba(255,107,39,0.4)] w-fit">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>CASE STUDY LOADED FROM RESUME</span>
+              </div>
+            )}
+
             <div className="flex items-center gap-2 mb-3">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF6B27]/15 border border-[#FF6B27]/30 text-[#FF6B27] text-xs font-mono font-bold tracking-wider uppercase">
                 <ActiveIcon className="w-3 h-3" />
@@ -470,16 +558,21 @@ export default function ClientResults() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {transformationGallery.map((item, idx) => (
               <div
+                id={item.id}
                 key={item.id}
                 onClick={() => {
                   setActiveStoryIdx(idx);
                   setSliderPos(50);
-                  const el = document.getElementById('results');
-                  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  const el = document.getElementById('results-showcase') || document.getElementById('results');
+                  if (el) {
+                    const navbarHeight = 85;
+                    const offsetPosition = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
                 }}
                 className={`p-5 rounded-2xl bg-[#0E0E0E] border transition-all duration-300 cursor-pointer group hover:border-[#FF6B27]/50 ${
                   activeStoryIdx === idx
-                    ? 'border-[#FF6B27] shadow-[0_0_20px_rgba(255,107,39,0.2)] bg-white/[0.03]'
+                    ? 'border-[#FF6B27] shadow-[0_0_25px_rgba(255,107,39,0.25)] bg-white/[0.04] ring-1 ring-[#FF6B27]/40'
                     : 'border-white/10 hover:bg-white/[0.02]'
                 }`}
               >

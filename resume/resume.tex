@@ -1,0 +1,163 @@
+\documentclass[10pt,a4paper]{article}
+
+% Clean, ATS-readable, single-column resume.
+\usepackage[a4paper,top=0.38in,bottom=0.38in,left=0.56in,right=0.56in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{url}
+
+\definecolor{classicblue}{HTML}{1E3E5B}
+\definecolor{accentorange}{HTML}{C44D12}
+\definecolor{muted}{HTML}{262626}
+\definecolor{softgray}{HTML}{505050}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=classicblue,
+    linkcolor=classicblue
+}
+
+\urlstyle{same}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2em}
+\linespread{1.02}
+
+% Improve text extraction in pdfTeX-generated PDFs when supported.
+\ifdefined\pdfgentounicode
+  \pdfgentounicode=1
+\fi
+
+% Section formatting
+\titleformat{\section}
+  {\bfseries\large\color{classicblue}}
+  {}{0pt}{}[\vspace{-2.5pt}\color{classicblue}\titlerule]
+
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+
+% Bullet formatting
+\setlist[itemize]{
+  leftmargin=1.15em,
+  label=\textbullet,
+  topsep=1.5pt,
+  itemsep=0.7pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+% Employment heading: role/employer, dates, and location.
+\newcommand{\job}[3]{%
+  \textbf{#1}\hfill{\small\textit{#2}}\\[-1pt]
+  {\small\color{softgray}#3}\par\vspace{-2pt}
+}
+
+\begin{document}
+\color{muted}
+
+% Main body font: 10.2pt with 12.1pt baseline spacing.
+\fontsize{10.2pt}{12.1pt}\selectfont
+
+%-------------------- HEADER --------------------
+\begin{center}
+  {\LARGE\bfseries\color{classicblue} SUMAN DEB}\\[3pt]
+  {\large\bfseries CERTIFIED FITNESS TRAINER \;|\; PERSONAL TRAINER}\\[4pt]
+  {\small Kestopur, Kolkata, West Bengal \;\;|\;\;
+  +91 62907 34280 \;\;|\;\;
+  \href{mailto:debs62643@gmail.com}{debs62643@gmail.com}}\\[3pt]
+  {\small
+  \textbf{Portfolio:} \href{https://suman-deb-fitness-portfolio.vercel.app/}{suman-deb-fitness-portfolio.vercel.app} \;\;\;|\;\;\;
+  \textbf{Instagram:} \href{https://www.instagram.com/fitwithsuman07}{@fitwithsuman07}}
+\end{center}
+
+\vspace{-5pt}
+
+%-------------------- PROFESSIONAL SUMMARY --------------------
+\section{Professional Summary}
+
+Fitness Trainer and Personal Trainer with professional coaching experience in Kolkata since 2021, specializing in one-to-one and group coaching. Proven track record in designing goal-based workout programmes for fat loss, muscle building, metabolic conditioning, and posture correction. Holds a Diploma in Personal Training (K11), Certified Personal Trainer qualification (NIFS), and CPR \& First Aid certification. Focused on biomechanically sound exercise demonstrations, client accountability, and long-term training habits.
+
+%-------------------- CORE COMPETENCIES --------------------
+\section{Core Competencies}
+
+\begin{itemize}
+    \item \textbf{Personal Training:} One-to-one bespoke coaching, group fitness instruction, and individualized workout programming
+
+    \item \textbf{Fitness Goals:} Fat loss, hypertrophy, body recomposition, weight management, strength, and cardiovascular conditioning
+
+    \item \textbf{Exercise Instruction:} Progressive resistance training, lifting biomechanics, technique demonstrations, and form correction
+
+    \item \textbf{Mobility \& Flexibility:} Dynamic warm-ups, post-workout cool-downs, corrective stretching, and joint prehab protocols
+
+    \item \textbf{Programme Management:} Periodized workout planning, progressive overload tracking, and client progress adaptation
+
+    \item \textbf{Client Support \& Safety:} Training consistency, foundational nutrition education within trainer scope, and CPR/First Aid
+\end{itemize}
+
+%-------------------- PROFESSIONAL EXPERIENCE --------------------
+\section{Professional Experience}
+
+\job{Fitness Trainer | Born 2 Fit Gym}{2026}{Gourongo Nagar, Kolkata}
+
+\begin{itemize}
+    \item Guide members on the fitness floor, demonstrate biomechanically sound lifting form, and reinforce gym floor safety standards.
+    \item Assist clients with goal-based workout routines, exercise technique coaching, and consistent habit loops.
+\end{itemize}
+
+\job{Fitness Trainer | Body Basics Gym}{September 2024 -- Present}{Manikanta, Kolkata}
+
+\begin{itemize}
+    \item Deliver bespoke one-to-one personal training and high-energy group coaching tailored to diverse client capabilities.
+    \item Develop and adapt structured workout blueprints for fat loss, hypertrophy, endurance, and general fitness.
+    \item Monitor progress markers, adjust lifting volumes, and provide evidence-based lifestyle and basic nutrition education within trainer scope.
+\end{itemize}
+
+\job{Fitness Trainer | Fitness Fast Gym \& The Workout Zone}{2021 -- 2024}{Haldiram and Kestopur, Kolkata}
+
+\begin{itemize}
+    \item Provided general fitness instruction, exercise demonstrations, and equipment safety supervision across high-volume memberships.
+    \item Guided clients through structured workout routines, proper equipment utilization, and sustainable training consistency.
+\end{itemize}
+
+%-------------------- SELECTED CLIENT TRANSFORMATIONS & ACHIEVEMENTS --------------------
+\section{Selected Client Transformations \& Achievements}
+
+\begin{itemize}
+    \item \textbf{Extreme Fat Loss \& Lifestyle Rebuild:} Coached client through a \textbf{-24\,kg fat loss} transformation with waist reduction from \textbf{42'' $\rightarrow$ 32''} in 20 weeks via progressive resistance training and sustainable caloric management. \href{https://suman-deb-fitness-portfolio.vercel.app/?case=trans-3\#results}{\textit{[View Case Study $\rightarrow$]}}
+
+    \item \textbf{Lean Muscle Hypertrophy \& Conditioning:} Guided trainee to gain \textbf{+7\,kg lean muscle mass} and achieve \textbf{9\% body fat} with shredded 6-pack definition in 16 weeks through calibrated compound overload. \href{https://suman-deb-fitness-portfolio.vercel.app/?case=trans-1\#results}{\textit{[View Case Study $\rightarrow$]}}
+
+    \item \textbf{Female Fat Loss \& Body Toning:} Directed a specialized female conditioning protocol achieving \textbf{-11\,kg fat loss} and \textbf{-4.5'' waist reduction} in 16 weeks with balanced home meals. \href{https://suman-deb-fitness-portfolio.vercel.app/?case=trans-2\#results}{\textit{[View Case Study $\rightarrow$]}}
+
+    \item \textbf{Back Width \& Lat Hypertrophy:} Engineered a \textbf{+4.5'' lat spread expansion} and V-taper definition in 14 weeks utilizing precision pulling angles and scapular control drills. \href{https://suman-deb-fitness-portfolio.vercel.app/?case=trans-6\#results}{\textit{[View Case Study $\rightarrow$]}}
+
+    \item \textbf{Metabolic Fat Loss \& Core Recomposition:} Programmed a 14-week deficit and core regimen producing \textbf{-14\,kg weight loss} and midsection definition while eliminating fatigue. \href{https://suman-deb-fitness-portfolio.vercel.app/?case=trans-4\#results}{\textit{[View Case Study $\rightarrow$]}}
+
+    \item \textbf{Torso Recomposition \& Muscular Density:} Achieved \textbf{-8\,kg fat loss} with simultaneous \textbf{+5\,kg lean muscle gain} in 16 weeks, dramatically improving chest-to-waist ratio. \href{https://suman-deb-fitness-portfolio.vercel.app/?case=trans-7\#results}{\textit{[View Case Study $\rightarrow$]}}
+
+    \item \textbf{Chest Hypertrophy \& Arm Sculpting:} Coached trainee to achieve \textbf{+3.5'' chest expansion} and peaked bicep fullness in 12 weeks through calibrated mechanical tension pressing. \href{https://suman-deb-fitness-portfolio.vercel.app/?case=trans-8\#results}{\textit{[View Case Study $\rightarrow$]}}
+
+    \item \textbf{Coaching Reach \& Retention:} Trained \textbf{1,200+ clients} across Kolkata gyms and conducted \textbf{350+ one-to-one personal-training sessions} across in-person and online formats with 90\%+ goal adherence. Complete portfolio at \href{https://suman-deb-fitness-portfolio.vercel.app/\#results}{\textit{suman-deb-fitness-portfolio.vercel.app/\#results}}.
+\end{itemize}
+
+%-------------------- CERTIFICATIONS --------------------
+\section{Certifications}
+
+\textbf{Diploma in Personal Training (DPT)} -- K11 School of Fitness Sciences \hfill 2026\\
+\textbf{Certified Personal Trainer (CPT)} -- National Institute of Fitness Studies (NIFS) \hfill 2025\\
+\textbf{CPR and First Aid Certification} -- Emergency Medical Safety Protocols
+
+%-------------------- LANGUAGES --------------------
+\section{Languages}
+
+\textbf{Bengali:} Fluent \qquad
+\textbf{Hindi:} Fluent \qquad
+\textbf{English:} Working proficiency
+
+\end{document}
